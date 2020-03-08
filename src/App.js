@@ -1,7 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
+import "./resources/styles.css";
 
-function App() {
-  return <div className="App">hello ok ok</div>;
+import Header from "./components/header_footer/Header";
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Header />
+      </div>
+    );
+  }
 }
 
 export default App;
