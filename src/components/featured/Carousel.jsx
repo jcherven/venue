@@ -13,8 +13,9 @@ const Carousel = () => {
     dots: false,
     infinite: true,
     autoplay: true,
-    speed: 1000,
+    autoplaySpeed: 7000,
     fade: true,
+    speed: 2700,
     cssEase: "linear"
   };
 
