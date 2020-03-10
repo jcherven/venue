@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Slide from "react-reveal/Slide";
 import roselia_logo from "../../resources/images/D4l379Roselia-Logo-6XL7FN.png";
+import axios from "axios";
+
+const bdbApiBaseUrl = "https://api.bandori.ga/v1/en";
 
 class TimeUntil extends Component {
   state = {
@@ -32,6 +35,9 @@ class TimeUntil extends Component {
 
   componentDidMount() {
     setInterval(() => this.getTimeUntil(this.state.deadline), 1000);
+    axios.get(bdbApiBaseUrl + "/event").then(response => {
+      console.log(response);
+    });
   }
 
   render() {
