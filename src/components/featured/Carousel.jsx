@@ -19,11 +19,19 @@ const Carousel = () => {
     cssEase: "linear"
   };
 
+  const viewportHeight = window.innerHeight;
+
+  const styleCarouselImage = {
+    backgroundSize: "cover",
+    backgroundPositionY: "center",
+    height: `${viewportHeight}px`
+  };
+
   return (
     <div
       className="carousel_wrapper"
       style={{
-        height: `${window.innerHeight}px`,
+        height: `${viewportHeight}px`,
         overflow: "hidden"
       }}
     >
@@ -33,11 +41,9 @@ const Carousel = () => {
             className="carousel_image"
             style={{
               background: `url(${slide_01})`,
-              backgroundSize: "cover",
-              backgroundPositionY: "center",
-              height: `${window.innerHeight}px`
+              ...styleCarouselImage
             }}
-          ></div>
+          />
         </div>
 
         <div>
@@ -45,11 +51,9 @@ const Carousel = () => {
             className="carousel_image"
             style={{
               background: `url(${slide_02})`,
-              backgroundSize: "cover",
-              backgroundPositionY: "center",
-              height: `${window.innerHeight}px`
+              ...styleCarouselImage
             }}
-          ></div>
+          />
         </div>
 
         <div>
@@ -57,11 +61,9 @@ const Carousel = () => {
             className="carousel_image"
             style={{
               background: `url(${slide_03})`,
-              backgroundSize: "cover",
-              backgroundPositionY: "center",
-              height: `${window.innerHeight}px`
+              ...styleCarouselImage
             }}
-          ></div>
+          />
         </div>
 
         <div>
@@ -69,11 +71,9 @@ const Carousel = () => {
             className="carousel_image"
             style={{
               background: `url(${slide_04})`,
-              backgroundSize: "cover",
-              backgroundPositionY: "center",
-              height: `${window.innerHeight}px`
+              ...styleCarouselImage
             }}
-          ></div>
+          />
         </div>
 
         <div>
@@ -81,11 +81,9 @@ const Carousel = () => {
             className="carousel_image"
             style={{
               background: `url(${slide_05})`,
-              backgroundSize: "cover",
-              backgroundPositionY: "center",
-              height: `${window.innerHeight}px`
+              ...styleCarouselImage
             }}
-          ></div>
+          />
         </div>
 
         <div>
@@ -93,11 +91,9 @@ const Carousel = () => {
             className="carousel_image"
             style={{
               background: `url(${slide_06})`,
-              backgroundSize: "cover",
-              backgroundPositionY: "center",
-              height: `${window.innerHeight}px`
+              ...styleCarouselImage
             }}
-          ></div>
+          />
         </div>
       </Slider>
     </div>
