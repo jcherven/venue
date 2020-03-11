@@ -4,6 +4,11 @@ import roselia_logo from "../../resources/images/D4l379Roselia-Logo-6XL7FN.png";
 import axios from "axios";
 
 const bdbApiBaseUrl = "https://api.bandori.ga/v1/en";
+const bdbEndpoint = {
+  currentEvent: "/event",
+  card: "/card"
+};
+const eventData = {};
 
 class TimeUntil extends Component {
   state = {
@@ -34,10 +39,20 @@ class TimeUntil extends Component {
   }
 
   componentDidMount() {
+    axios.get(bdbApiBaseUrl + bdbEndpoint.currentEvent).then(
+      response => {
+        eventData.assetBundleName = response.data.assetBundleName;
+        eventData.startAt = response.data.startAt;
+        eventData.endAt = response.data.endAt;
+      },
+      error => {
+        this.setState(error);
+      }
+    );
+
+    console.log(eventData);
+
     setInterval(() => this.getTimeUntil(this.state.deadline), 1000);
-    axios.get(bdbApiBaseUrl + "/event").then(response => {
-      console.log(response);
-    });
   }
 
   render() {
