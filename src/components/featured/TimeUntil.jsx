@@ -4,9 +4,14 @@ import roselia_logo from "../../resources/images/D4l379Roselia-Logo-6XL7FN.png";
 import axios from "axios";
 
 const bdbApiBaseUrl = "https://api.bandori.ga/v1/en";
-const bdbEndpoint = {
+const bdbApiEndpoint = {
   currentEvent: "/event",
   card: "/card"
+};
+const bdbResourceBaseUrl = "https://res.bandori.ga/assets-en/event/";
+const bdbResourceEndpoint = {
+  logo: "/images_rip/logo.png",
+  banner: "/images_rip/banner.png"
 };
 
 class TimeUntil extends Component {
@@ -21,7 +26,8 @@ class TimeUntil extends Component {
       min: 0,
       sec: 0,
       assetBundleName: "",
-      eventResourceBanner: "",
+      eventBanner: "",
+      eventLogo: "",
       startAt: 0,
       endAt: 0
     };
@@ -60,7 +66,7 @@ class TimeUntil extends Component {
   }
 
   componentDidMount() {
-    axios.get(bdbApiBaseUrl + bdbEndpoint.currentEvent).then(
+    axios.get(bdbApiBaseUrl + bdbApiEndpoint.currentEvent).then(
       response => {
         this.setState({ assetBundleName: response.data.assetBundleName });
         this.setState({ startAt: parseInt(response.data.startAt) });
@@ -79,7 +85,10 @@ class TimeUntil extends Component {
       <Slide left delay={1000}>
         <div className="countdown_wrapper">
           <div className="wrapper" style={{ border: "none" }}>
-            <img src={roselia_logo} alt="Roselia Logo" />
+            <img
+              src={`${bdbResourceBaseUrl}${this.state.assetBundleName}${bdbResourceEndpoint.banner}`}
+              alt="Current Event Logo"
+            />
           </div>
           <div className="countdown_top">{this.state.countdownMessage}</div>
           <div className="countdown_bottom">
