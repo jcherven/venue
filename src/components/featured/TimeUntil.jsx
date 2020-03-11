@@ -8,50 +8,76 @@ const bdbEndpoint = {
   currentEvent: "/event",
   card: "/card"
 };
-const eventData = {};
 
 class TimeUntil extends Component {
-  state = {
-    deadline: "Dec, 16, 2020",
-    days: "0",
-    hours: "0",
-    minutes: "0",
-    seconds: "0"
-  };
+  constructor() {
+    super();
+    this.state = {
+      countdownMessage: "",
+      deadline: 0,
+      day: "0",
+      hr: "0",
+      min: "0",
+      sec: "0",
+      assetBundleName: "",
+      startAt: 0,
+      endAt: 0
+    };
+  }
 
-  getTimeUntil(deadline) {
-    const time = Date.parse(deadline) - Date.parse(new Date());
-    if (time < 0) {
-      console.log("Date Passed");
-    } else {
-      const seconds = Math.floor((time / 1000) % 60);
-      const minutes = Math.floor((time / 1000 / 60) % 60);
-      const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
-      const days = Math.floor(time / (1000 * 60 * 60 * 24));
-
+  selectDeadline(startAt, endAt) {
+    const nowTime = Date.parse(new Date());
+    if (nowTime - startAt > 0) {
       this.setState({
-        days,
-        hours,
-        minutes,
-        seconds
+        deadline: endAt,
+        countdownMessage: "Event ends at: "
+      });
+    } else {
+      this.setState({
+        deadline: startAt,
+        countdownMessage: "Event starts at: "
       });
     }
+    console.log("selectDeadline(): nowTime: ", typeof nowTime, nowTime);
+    console.log("selectDeadline(): startTime: ", typeof startAt, startAt);
+    console.log("selectDeadline(): endTime: ", typeof endAt, endAt);
+  }
+
+  getTimeUntil(deadline) {
+    const nowTime = Date.parse(new Date());
+    const countdown = deadline - nowTime;
+
+    const sec = Math.floor((countdown / 1000) % 60);
+    const min = Math.floor((countdown / 1000 / 60) % 60);
+    const hr = Math.floor((countdown / (1000 * 60 * 60)) % 24);
+    const day = Math.floor(countdown / (1000 * 60 * 60 * 24));
+
+    this.setState({
+      day,
+      hr,
+      min,
+      sec
+    });
   }
 
   componentDidMount() {
     axios.get(bdbApiBaseUrl + bdbEndpoint.currentEvent).then(
       response => {
-        eventData.assetBundleName = response.data.assetBundleName;
-        eventData.startAt = response.data.startAt;
-        eventData.endAt = response.data.endAt;
+        this.setState({ assetBundleName: response.data.assetBundleName });
+        this.setState({ startAt: parseInt(response.data.startAt) });
+        console.log(
+          "state.startAt=",
+          typeof this.state.startAt,
+          this.state.startAt
+        );
+        this.setState({ endAt: parseInt(response.data.endAt) });
+        console.log("state.endAt=", typeof this.state.endAt, this.state.endAt);
+        this.selectDeadline(this.state.startAt, this.state.endAt);
       },
       error => {
         this.setState(error);
       }
     );
-
-    console.log(eventData);
-
     setInterval(() => this.getTimeUntil(this.state.deadline), 1000);
   }
 
@@ -62,22 +88,22 @@ class TimeUntil extends Component {
           <div className="wrapper" style={{ border: "none" }}>
             <img src={roselia_logo} alt="Roselia Logo" />
           </div>
-          <div className="countdown_top">Event starts in:</div>
+          <div className="countdown_top">{this.state.countdownMessage}</div>
           <div className="countdown_bottom">
             <div className="countdown_item">
-              <div className="countdown_time">{this.state.days}</div>
+              <div className="countdown_time">{this.state.day}</div>
               <div className="countdown_tag">Days</div>
             </div>
             <div className="countdown_item">
-              <div className="countdown_time">{this.state.hours}</div>
+              <div className="countdown_time">{this.state.hr}</div>
               <div className="countdown_tag">Hrs</div>
             </div>
             <div className="countdown_item">
-              <div className="countdown_time">{this.state.minutes}</div>
+              <div className="countdown_time">{this.state.min}</div>
               <div className="countdown_tag">Min</div>
             </div>
             <div className="countdown_item">
-              <div className="countdown_time">{this.state.seconds}</div>
+              <div className="countdown_time">{this.state.sec}</div>
               <div className="countdown_tag">Sec</div>
             </div>
           </div>
