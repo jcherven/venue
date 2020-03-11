@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Slide from "react-reveal/Slide";
-import roselia_logo from "../../resources/images/D4l379Roselia-Logo-6XL7FN.png";
 import axios from "axios";
 
 const bdbApiBaseUrl = "https://api.bandori.ga/v1/en";
