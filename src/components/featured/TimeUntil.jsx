@@ -13,13 +13,15 @@ class TimeUntil extends Component {
   constructor() {
     super();
     this.state = {
+      error: "",
       countdownMessage: "",
       deadline: 0,
-      day: "0",
-      hr: "0",
-      min: "0",
-      sec: "0",
+      day: 0,
+      hr: 0,
+      min: 0,
+      sec: 0,
       assetBundleName: "",
+      eventResourceBanner: "",
       startAt: 0,
       endAt: 0
     };
@@ -38,9 +40,6 @@ class TimeUntil extends Component {
         countdownMessage: "Event starts at: "
       });
     }
-    console.log("selectDeadline(): nowTime: ", typeof nowTime, nowTime);
-    console.log("selectDeadline(): startTime: ", typeof startAt, startAt);
-    console.log("selectDeadline(): endTime: ", typeof endAt, endAt);
   }
 
   getTimeUntil(deadline) {
@@ -65,13 +64,7 @@ class TimeUntil extends Component {
       response => {
         this.setState({ assetBundleName: response.data.assetBundleName });
         this.setState({ startAt: parseInt(response.data.startAt) });
-        console.log(
-          "state.startAt=",
-          typeof this.state.startAt,
-          this.state.startAt
-        );
         this.setState({ endAt: parseInt(response.data.endAt) });
-        console.log("state.endAt=", typeof this.state.endAt, this.state.endAt);
         this.selectDeadline(this.state.startAt, this.state.endAt);
       },
       error => {
