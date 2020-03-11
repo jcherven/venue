@@ -20,6 +20,7 @@ const Carousel = () => {
   };
 
   const viewportHeight = window.innerHeight;
+
   const styleCarouselImage = {
     backgroundSize: "cover",
     backgroundPositionY: "center",
