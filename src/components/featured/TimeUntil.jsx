@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Slide from "react-reveal/Slide";
 import axios from "axios";
 
@@ -67,9 +67,9 @@ class TimeUntil extends Component {
   componentDidMount() {
     axios.get(bdbApiBaseUrl + bdbApiEndpoint.currentEvent).then(
       response => {
-        this.setState({ assetBundleName: response.data.assetBundleName });
-        this.setState({ startAt: parseInt(response.data.startAt) });
-        this.setState({ endAt: parseInt(response.data.endAt) });
+        this.setState({assetBundleName: response.data.assetBundleName});
+        this.setState({startAt: parseInt(response.data.startAt)});
+        this.setState({endAt: parseInt(response.data.endAt)});
         this.selectDeadline(this.state.startAt, this.state.endAt);
       },
       error => {
@@ -83,7 +83,7 @@ class TimeUntil extends Component {
     return (
       <Slide left delay={1000}>
         <div className="countdown_wrapper">
-          <div className="wrapper" style={{ border: "none" }}>
+          <div className="wrapper" style={{border: "none"}}>
             <img
               src={`${bdbResourceBaseUrl}${this.state.assetBundleName}${bdbResourceEndpoint.banner}`}
               alt="Current Event Logo"
