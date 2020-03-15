@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
 
 import SideDrawer from "./SideDrawer";
+
+import galaxyLogo from '../../resources/images/galaxy_logo_alpha.png';
 
 class Header extends Component {
   state = {
@@ -29,7 +31,7 @@ class Header extends Component {
   };
 
   toggleDrawer = value => {
-    this.setState({ drawerOpen: value });
+    this.setState({drawerOpen: value});
   };
   render() {
     return (
@@ -43,15 +45,16 @@ class Header extends Component {
       >
         <Toolbar>
           <div className="header_logo">
-            <div
-              className="header_logo_venue"
-              style={{ fontFamily: "Saira Stencil One" }}
-            >
-              PanaSpace
+            <div className="header_logo_venue">
+              <img
+                className='header_logo_venue'
+                src={galaxyLogo}
+                alt="Galaxy Live House Logo"
+              />
             </div>
-            <div className="header_logo_title">Live Music & Events</div>
           </div>
           <IconButton
+            className='drawerButton'
             aria-label="Menu"
             color="inherit"
             onClick={() => this.toggleDrawer(true)}
@@ -64,7 +67,7 @@ class Header extends Component {
             onClose={value => this.toggleDrawer(value)}
           />
         </Toolbar>
-      </AppBar>
+      </AppBar >
     );
   }
 }
