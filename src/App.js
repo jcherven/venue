@@ -2,9 +2,13 @@ import React, {Component} from "react";
 import "./resources/styles.css";
 
 import Header from "./components/header_footer/Header";
-import Featured from "./components/featured";
-import VenueNfo from './components/venueNfo';
-import Highlights from './components/Highlights';
+import Event from "./components/Event";
+import Calendar from './components/Calendar';
+import About from './components/About';
+// import Blog from './components/Blog';
+// import PickUp from './components/PickUp';
+// import Gallery from './components/Gallery';
+// import Wanted from './components/Wanted';
 
 class App extends Component {
   render() {
@@ -14,9 +18,9 @@ class App extends Component {
         style={{height: "1500px", background: "cornflowerblue"}}
       >
         <Header />
-        <Featured />
-        <VenueNfo />
-        <Highlights />
+        <Event />
+        <Calendar />
+        <About />
       </div>
     );
   }

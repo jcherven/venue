@@ -2,13 +2,13 @@ import React from "react";
 import Carousel from "./Carousel";
 import TimeUntil from "./TimeUntil";
 
-const Featured = () => {
+const Event = () => {
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{position: "relative"}}>
       <Carousel />
       <TimeUntil />
     </div>
   );
 };
 
-export default Featured;
+export default Event;
