@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
-import Slide from 'react-reveal/Slide';
-import axios from 'axios';
+import React, { Component } from "react";
+import Slide from "react-reveal/Slide";
+import axios from "axios";
 
-const bdbApiBaseUrl = 'https://api.bandori.ga/v1/en';
+const bdbApiBaseUrl = "https://api.bandori.ga/v1/en";
 const bdbApiEndpoint = {
-  currentEvent: '/event',
-  card: '/card'
+  currentEvent: "/event",
+  card: "/card",
 };
-const bdbResourceBaseUrl = 'https://res.bandori.ga/assets-en/event/';
+const bdbResourceBaseUrl = "https://res.bandori.ga/assets-en/event/";
 const bdbResourceEndpoint = {
-  logo: '/images_rip/logo.png',
-  banner: '/images_rip/banner.png'
+  logo: "/images_rip/logo.png",
+  banner: "/images_rip/banner.png",
 };
 
 class TimeUntil extends Component {
   constructor() {
     super();
     this.state = {
-      error: '',
-      countdownMessage: '',
+      error: "",
+      countdownMessage: "",
       deadline: 0,
       day: 0,
       hr: 0,
       min: 0,
       sec: 0,
-      assetBundleName: '',
-      eventBanner: '',
-      eventLogo: '',
+      assetBundleName: "",
+      eventBanner: "",
+      eventLogo: "",
       startAt: 0,
-      endAt: 0
+      endAt: 0,
     };
   }
 
@@ -37,12 +37,12 @@ class TimeUntil extends Component {
     if (nowTime - startAt > 0) {
       this.setState({
         deadline: endAt,
-        countdownMessage: 'Event ends at: '
+        countdownMessage: "Event ends at: ",
       });
     } else {
       this.setState({
         deadline: startAt,
-        countdownMessage: 'Event starts at: '
+        countdownMessage: "Event starts at: ",
       });
     }
   }
@@ -60,19 +60,19 @@ class TimeUntil extends Component {
       day,
       hr,
       min,
-      sec
+      sec,
     });
   }
 
   componentDidMount() {
     axios.get(bdbApiBaseUrl + bdbApiEndpoint.currentEvent).then(
-      response => {
+      (response) => {
         this.setState({ assetBundleName: response.data.assetBundleName });
         this.setState({ startAt: parseInt(response.data.startAt) });
         this.setState({ endAt: parseInt(response.data.endAt) });
         this.selectDeadline(this.state.startAt, this.state.endAt);
       },
-      error => {
+      (error) => {
         this.setState(error);
       }
     );

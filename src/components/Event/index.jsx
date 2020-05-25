@@ -4,7 +4,7 @@ import TimeUntil from "./TimeUntil";
 
 const Event = () => {
   return (
-    <div style={{position: "relative"}}>
+    <div style={{ position: "relative" }}>
       <Carousel />
       <TimeUntil />
     </div>

@@ -1,12 +1,12 @@
-import React from 'react';
-import Slider from 'react-slick';
+import React from "react";
+import Slider from "react-slick";
 
-import slide_01 from '../../resources/images/slide_01.png';
-import slide_02 from '../../resources/images/slide_02.png';
-import slide_03 from '../../resources/images/slide_03.png';
-import slide_04 from '../../resources/images/slide_04.png';
-import slide_05 from '../../resources/images/slide_05.png';
-import slide_06 from '../../resources/images/slide_06.png';
+import slide_01 from "../../resources/images/slide_01.png";
+import slide_02 from "../../resources/images/slide_02.png";
+import slide_03 from "../../resources/images/slide_03.png";
+import slide_04 from "../../resources/images/slide_04.png";
+import slide_05 from "../../resources/images/slide_05.png";
+import slide_06 from "../../resources/images/slide_06.png";
 
 const Carousel = () => {
   const settings = {
@@ -16,14 +16,14 @@ const Carousel = () => {
     autoplaySpeed: 7000,
     fade: true,
     speed: 2700,
-    cssEase: 'linear',
+    cssEase: "linear",
   };
 
   const viewportHeight = window.innerHeight;
 
   const styleCarouselImage = {
-    backgroundSize: 'cover',
-    backgroundPositionY: 'center',
+    backgroundSize: "cover",
+    backgroundPositionY: "center",
     height: `${viewportHeight}px`,
   };
 
@@ -32,7 +32,7 @@ const Carousel = () => {
       className="carousel_wrapper"
       style={{
         height: `${viewportHeight}px`,
-        overflow: 'hidden',
+        overflow: "hidden",
       }}
     >
       <Slider {...settings}>
