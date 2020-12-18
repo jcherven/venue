@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="App">yubi yubi</div>
+        <div className="App" style={{height:'1500px',background:'cornflowerblue'}}>yubi yubi</div>
         <Header />
       </div>
     );
